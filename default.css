@@ -1,0 +1,35 @@
+body {
+  width: 700px;
+}
+table {
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 0px;
+	border-style: solid solid solid solid;
+	border-color: black black black black;
+	border-collapse: separate;
+	background-color: white;
+  text-align: left;
+  vertical-align: top;
+  empty-cells: show;
+}
+th {
+	border-width: 1px 1px 1px 1px;
+	padding: 1px 1px 1px 1px;
+	border-style: outset outset outset outset;
+	border-color: black black black black;
+	background-color: white;
+  text-align: left;
+  vertical-align: top;
+}
+td {
+	border-width: 1px 1px 1px 1px;
+	padding: 1px 1px 1px 1px;
+	border-style: outset outset outset outset;
+	border-color: black black black black;
+	background-color: white;
+  text-align: left;
+  vertical-align: top;
+}
+dd {
+  margin-bottom: 20px;
+}

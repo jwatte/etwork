@@ -1,0 +1,117 @@
+<html><head><title>Game Networking Library Manifesto</title>
+    <link rel='stylesheet' type='text/css' href='default.css' />
+  </head>
+  <body>
+    <h2>What Does a Game Networking Library Need?</h2>
+    <div class='par'>
+Here is the protocol stack I would build for a networked 
+game library, in order to serve a variety of action, MMO 
+and turn-based games in a variety of settings. The goal 
+would be to support different kinds of networked entity 
+implementations without necessarily imposing policy. The 
+closest to policy it would probably come would be the 
+entity state description, which by necessity needs to use 
+some form of meta-data description, which typically needs 
+to be statically defined. Possible options include:
+<ul style='list-style: compact;'>
+<li>C++ type templates</li>
+<li>C-style format strings</li>
+<li>SunRPC, COM and CORBA style code generation</li>
+</ul>
+</div>
+<div class='par'>
+Persistency of objects can use some functions of this 
+protocol stack (such as marshalling and entity support), 
+but is not really a networking function (it's a database 
+function).
+</div>
+<div class='par'>
+The numbers indicate what layer a specific functionality 
+group lives at. Thus, the lobbying, peer, server and client 
+groups all live at layer 4 within the system, on top of the 
+RPC and State sync layers.
+</div>
+<div class='par'>
+Each line item needs a specific piece of support; some of 
+the line items are there to support items in layers above. 
+For example, message sequence numbers and acks must be 
+available to the messaging layer, so that it knows whether 
+to re-send queued reliable messages. As another example, 
+pretty much all layers will get data from the clock 
+estimator, telling them when the given message/event was 
+sent and received.
+</div>
+<div>
+Other things to note:
+<ul style='list-style: compact;'>
+<li>User identity lives in Lobbying and Server, but actually 
+ needs to reach all the way down to packet framing, for 
+ authentication purposes.</li>
+<li>Some of these concepts may eventually be removed from the 
+ layer as such, and just represented as arguments. For 
+ example, user identity could be represented in a separate 
+ persistency database, and just passed in (together with a 
+ key) as arguments.</li>
+</ul>
+</div>
+<div class='par'>
+<table>
+<tr><th>Layer</th><th>Group</th><th>Feature</th><th>Etwork Support</th></tr>
+<tr><td rowspan='25'>4.</td><td rowspan='7'>Lobbying</td><td> Game name</td><td></td></tr>
+<tr><td>    Game type</td><td></td></tr>
+<tr><td>	    User identity</td><td></td></tr>
+<tr><td>	    User groups</td><td></td></tr>
+<tr><td>	    Permissions</td><td></td></tr>
+<tr><td>	    Chat</td><td></td></tr>
+<tr><td>	    NAT traversal</td><td></td></tr>
+<tr><td rowspan='4'>    Peer</td><td>Peer group management</td><td></td></tr>
+<tr><td>	    Server election</td><td></td></tr>
+<tr><td>	    Lobby connection</td><td></td></tr>
+<tr><td>	    Peer connection</td><td></td></tr>
+<tr><td rowspan='9'>Server</td><td> Packet forwarding</td><td></td></tr>
+<tr><td>	    Data validation</td><td></td></tr>
+<tr><td>	    Lobby listing</td><td></td></tr>
+<tr><td>	    Object lifetime</td><td></td></tr>
+<tr><td>	    User <-> Client mapping</td><td></td></tr>
+<tr><td>	    User identity</td><td></td></tr>
+<tr><td>	    Server announcement</td><td></td></tr>
+<tr><td>	    Client connection</td><td></td></tr>
+<tr><td>	    Client validation</td><td></td></tr>
+<tr><td rowspan='5'>   Client</td><td> Shadow object lifetime</td><td></td></tr>
+<tr><td>	    Focus object messaging</td><td></td></tr>
+<tr><td>	    Server discovery</td><td></td></tr>
+<tr><td>	    Server connection</td><td></td></tr>
+<tr><td>	    Lobby connection</td><td></td></tr>
+<tr><td rowspan='7'>3.</td><td rowspan='3'> RPC</td><td> Application target</td><td></td></tr>
+<tr><td>	    Function</td><td></td></tr>
+<tr><td>	    Arguments</td><td></td></tr>
+<tr><td rowspan='4'>    State sync</td><td> Entity id</td><td></td></tr>
+<tr><td>      State description / Marhshalling / Meta-data</td><td></td></tr>
+<tr><td>      Sync rules / Periodic re-send / Dirty re-send / Reliable update</td><td></td></tr>
+<tr><td>      Entity publishing / Priority sort / Bandwidth management</td><td></td></tr>
+<tr><td rowspan='4'>2.</td><td rowspan='4'>Messages</td><td> Delivery guarantee / Per channel</td><td></td></tr>
+<tr><td>	    Ordering guarantee / Per channel</td><td></td></tr>
+<tr><td>      Application targets</td><td></td></tr>
+<tr><td>      Payload / May include source as protocol data</td><td></td></tr> 
+<tr><td rowspan='10'>1.</td><td rowspan='10'>Packet framing</td><td>Message bundling</td><td></td></tr>
+<tr><td>      RTT estimation</td><td></td></tr>
+<tr><td>      Clock sync</td><td></td></tr>
+<tr><td>      Authentication</td><td></td></tr>
+<tr><td>      Sequence number</td><td></td></tr>
+<tr><td>      Sequence number ack</td><td></td></tr>
+<tr><td>      String table</td><td></td></tr>
+<tr><td>      Channel management</td><td></td></tr>
+<tr><td>      Keepalive transmission</td><td></td></tr>
+<tr><td>      Encryption</td><td></td></tr>
+<tr><td rowspan='7'>0.</td><td rowspan='7'> Network packet I/O</td><td> Host addressing</td><td>0.1</td></tr>
+<tr><td>	    Host name resolution</td><td>0.1</td></tr>
+<tr><td>	    Connection</td><td>0.1</td></tr>
+<tr><td>	    Timeout</td><td>0.3</td></tr>
+<tr><td>	    Binary serialization</td><td>0.3</td></tr>
+<tr><td>	    Queuing</td><td></td></tr>
+<tr><td>	    Delivery notification</td><td>0.2</td></tr>
+</table>
+</div>
+  </body>
+</html>
+

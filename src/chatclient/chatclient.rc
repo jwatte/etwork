@@ -1,0 +1,128 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CONNECT DIALOGEX 0, 0, 186, 113
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | 
+    DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Etwork Chat Connect"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,121,83,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,15,83,50,14
+    GROUPBOX        "Connect to Chat Server",IDC_STATIC,7,7,172,99
+    LTEXT           "Host",IDC_STATIC,17,23,16,8
+    LTEXT           "Port",IDC_STATIC,17,41,14,8
+    EDITTEXT        IDC_HOSTNAME,45,20,126,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PORTNUM,45,39,40,14,ES_AUTOHSCROLL
+    LTEXT           "Name",IDC_STATIC,17,59,19,8
+    EDITTEXT        IDC_NAME,45,58,81,14,ES_AUTOHSCROLL
+    CONTROL         "UDP",IDC_UDP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,95,
+                    40,29,10
+END
+
+IDD_CHATUSER DIALOGEX 300, 200, 315, 199
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_FIXEDSYS | WS_POPUP | 
+    WS_CAPTION
+CAPTION "Etwork Chat Client"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Send",IDOK,199,178,50,14
+    PUSHBUTTON      "Quit",IDCANCEL,258,178,50,14
+    EDITTEXT        IDC_TEXT,7,178,182,14,ES_AUTOHSCROLL
+    LISTBOX         IDC_CHATLOG,7,7,301,160,LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CONNECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 106
+    END
+
+    IDD_CHATUSER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 308
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 192
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
